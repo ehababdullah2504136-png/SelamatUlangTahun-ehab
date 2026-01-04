@@ -1,11 +1,19 @@
 // Fungsi untuk memulai musik
 function playMusic() {
   const music = document.getElementById('background-music');
-  music.play();
+  music.muted = false;
+  music.play().catch(function(error) {
+    console.log('Audio play failed:', error);
+  });
 }
+
 window.addEventListener('DOMContentLoaded', function() {
+  const music = document.getElementById('background-music');
+  music.volume = 0.5; // Set volume to 50%
   playMusic();
 });
+
+// Ensure music plays on first user interaction
 document.body.addEventListener('click', playMusic, { once: true });
 const content = document.getElementById('content');
 const footer = document.getElementsByTagName('footer')[0];
